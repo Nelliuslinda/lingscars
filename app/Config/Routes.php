@@ -32,6 +32,36 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
+$routes->group('auth', function($routes){
+    $routes->get('/', 'Auth::index');
+    $routes->get('login', 'Auth::login');
+    $routes->get('register', 'Auth::register');
+    $routes->get('register_two', 'Auth::register_two');
+    $routes->get('logout', 'Auth::logout');
+});
+$routes->get('catalogue', 'Catalogue::overall');
+$routes->get('/cart', 'cart::index');
+
+$routes->get('/suv_catalogue', 'Catalogue::suv');
+$routes->get('/bike_catalogue', 'Catalogue::bike');
+$routes->get('/sedan_catalogue', 'Catalogue::sedan');
+$routes->get('/overall_catalogue', 'Catalogue::overall');
+
+$routes->get('/maintemplate', 'Home::maintemplate');
+
+$routes->post('vehicle', 'Vehicle::vehicle');
+
+$routes->post('addtocart', 'Cart::addToCart');
+
+/*
+ * ------------------------------------
+ * Image CRUD for Admin
+ * -----------------------------------
+ * */
+
+  $routes->get('admin/vehicles', 'Vehicle::index');
+$routes->get('admin/vehicles/create', 'Vehicle::create');
+$routes->post('admin/vehicles/store', 'Vehicle::store');
 
 /*
  * --------------------------------------------------------------------
